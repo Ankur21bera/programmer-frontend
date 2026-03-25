@@ -116,7 +116,7 @@ const Mybookings = () => {
       const razorpay = new window.Razorpay(options);
       razorpay.open();
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 
@@ -136,7 +136,7 @@ const Mybookings = () => {
         toast.error(res.message);
       }
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message);
     }
   };
 

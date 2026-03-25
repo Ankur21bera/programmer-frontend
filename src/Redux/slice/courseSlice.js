@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { backendUrl } from "../../App";
 import { data } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const token = sessionStorage.getItem("token");
 
@@ -206,9 +207,10 @@ export const createRazorpayOrder = createAsyncThunk(
         try {
             const token = sessionStorage.getItem("token");
             const response = await axios.post(`${backendUrl}/api/user/razorpay-order`,data,{headers:{Authorization:`Bearer ${token}`}});
+             console.log("RAZORPAY RESPONSE:", response);
             return response.data;
         } catch (error) {
-            return rejectWithValue (error.response?.data?.message || error.message)
+            return rejectWithValue (error.response?.data?.message || error.message);
         }
     }
 )
